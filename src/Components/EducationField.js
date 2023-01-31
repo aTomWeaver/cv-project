@@ -1,33 +1,15 @@
 import { Component } from "react";
 
 class Education extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
-      cache: { name: "", degree: "", startYear: "", endYear: "" },
-      institutions: [
-        {
-          name: "University of Bongus, Jelly Campus",
-          degree: "B.A. in Wigging",
-          startYear: "2011",
-          endYear: "2015",
-        },
-        {
-          name: "University of Michigan",
-          degree: "B.A. in Scientology",
-          startYear: "2016",
-          endYear: "2019",
-        },
-      ],
-    };
+    this.inst = props.institutions;
   }
   render() {
-    const institutions = this.state.institutions;
-
     return (
-      <div>
-        {institutions.map((ins) => {
+      <div className="section education">
+        {this.inst.map((ins) => {
           return (
             <div key={ins.name}>
               <h3>{ins.name}</h3>
