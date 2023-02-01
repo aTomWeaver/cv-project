@@ -1,17 +1,22 @@
 import { Component } from "react";
+import "../styles/EducationField.css";
 
 class Education extends Component {
   constructor(props) {
     super(props);
 
     this.inst = props.institutions;
+    this.display = props.display;
   }
   render() {
     return (
       <div className="section education">
+        <button className="edit-btn" onClick={() => this.display("edu")}>
+          edit
+        </button>
         {this.inst.map((ins) => {
           return (
-            <div key={ins.name}>
+            <div key={ins.name} className="institution">
               <h3>{ins.name}</h3>
               <p>{ins.degree}</p>
               <p>
