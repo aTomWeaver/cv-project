@@ -1,0 +1,28 @@
+.education {
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.education > h2 {
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.education p {
+  margin: 0px;
+  text-align: center;
+}
+.education h3 {
+  text-align: center;
+  margin: 15px 0px 0px 0px;
+}
+
+.edit-btn {
+  display: none;
+  position: absolute;
+  right: 20%;
+}
+
+.resume-ctr .education:hover .edit-btn {
+  display: block;
+}
