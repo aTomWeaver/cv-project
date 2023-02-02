@@ -1,40 +1,8 @@
 import React, { useState, useEffect } from "react";
 import uniqid from "uniqid";
 import Education from "./Components/EducationField";
+import EduModal from "./Components/Modals";
 import "./styles/App.css";
-
-class EduModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggle = props.toggle;
-  }
-  render() {
-    return (
-      <form
-        id="edu-add"
-        className="edu-modal"
-        style={{ display: "none" }}
-      >
-        <label htmlFor="institution">School</label>
-        <input id="institution" type="text" />
-
-        <label htmlFor="degree">Degree</label>
-        <input id="degree" type="text" />
-
-        <label htmlFor="start-date">Start Date</label>
-        <input id="start-date" type="text" />
-
-        <label htmlFor="end-date">End Date</label>
-        <input id="end-date" type="text" />
-
-        <button type="button">Add Education</button>
-        <button type="button" onClick={() => this.toggle("edu")}>
-          Close
-        </button>
-      </form>
-    );
-  }
-}
 
 class App extends React.Component {
   constructor() {
@@ -43,8 +11,8 @@ class App extends React.Component {
     this.state = {
       education: {
         cache: {
-          name: "",
-          degree: "",
+          instName: "",
+          degree: "testing",
           startYear: "",
           endYear: "",
           id: uniqid(),
@@ -67,7 +35,21 @@ class App extends React.Component {
     };
   }
 
-  getEducation() {}
+  handleChange = (e) => {
+    // there is probably a better way to just change one part of state
+    this.setState(() => {
+      return {
+        education: {
+          cache: {
+            ...this.state.education.cache,
+            [e.target.id]: e.target.value,
+          },
+          institutions: this.state.education.institutions,
+        },
+      };
+    });
+    console.log(this.state);
+  };
 
   toggleModal = (type) => {
     let field = document.querySelector(`.${type}-modal`);
@@ -81,7 +63,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="resume-ctr">
-        <EduModal toggle={this.toggleModal} />
+        <EduModal toggle={this.toggleModal} handleChange={this.handleChange} />
         <Education
           institutions={this.state.education.institutions}
           display={this.toggleModal}
