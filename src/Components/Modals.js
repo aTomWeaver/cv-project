@@ -4,6 +4,7 @@ class EduModal extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = props.toggle;
+    this.handleChange = props.handleChange;
   }
   render() {
     return (
@@ -12,17 +13,17 @@ class EduModal extends React.Component {
         className="edu-modal"
         style={{ display: "none" }}
       >
-        <label htmlFor="institution">School</label>
-        <input id="institution" type="text" />
+        <label htmlFor="instName">School</label>
+        <input id="instName" type="text" onChange={this.handleChange}/>
 
         <label htmlFor="degree">Degree</label>
-        <input id="degree" type="text" />
+        <input id="degree" type="text" onChange={this.handleChange} />
 
-        <label htmlFor="start-date">Start Date</label>
-        <input id="start-date" type="text" />
+        <label htmlFor="startYear">Start Year</label>
+        <input id="startYear" type="text" onChange={this.handleChange} />
 
-        <label htmlFor="end-date">End Date</label>
-        <input id="end-date" type="text" />
+        <label htmlFor="endYear">End Year</label>
+        <input id="endYear" type="text" onChange={this.handleChange} />
 
         <button type="button">Add Education</button>
         <button type="button" onClick={() => this.toggle("edu")}>
