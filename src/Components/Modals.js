@@ -8,13 +8,9 @@ class EduModal extends React.Component {
   }
   render() {
     return (
-      <form
-        id="edu-add"
-        className="edu-modal"
-        style={{ display: "none" }}
-      >
+      <form id="edu-add" className="edu-modal" style={{ display: "none" }}>
         <label htmlFor="instName">School</label>
-        <input id="instName" type="text" onChange={this.handleChange}/>
+        <input id="instName" type="text" onChange={this.handleChange} />
 
         <label htmlFor="degree">Degree</label>
         <input id="degree" type="text" onChange={this.handleChange} />
@@ -34,4 +30,4 @@ class EduModal extends React.Component {
   }
 }
 
-export default EduModal;
+export { EduModal };

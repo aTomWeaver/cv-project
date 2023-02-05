@@ -48,7 +48,6 @@ class App extends React.Component {
         },
       };
     });
-    console.log(this.state);
   };
 
   toggleModal = (type) => {
@@ -56,8 +55,7 @@ class App extends React.Component {
     console.log(field.style.display);
     field.style.display === "none"
       ? (field.style.display = "block")
-      : (field.style.display = "none");
-    // field.style.display = "block";
+      : (field.style.display = "none")
   };
 
   render() {

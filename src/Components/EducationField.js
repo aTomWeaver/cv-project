@@ -6,12 +6,12 @@ class Education extends Component {
     super(props);
 
     this.inst = props.institutions;
-    this.display = props.display;
+    this.toggleModal = props.toggleModal;
   }
   render() {
     return (
       <div className="section education">
-        <button className="edit-btn" onClick={() => this.display("edu")}>
+        <button className="edit-btn" onClick={() => this.toggleModal("edu")}>
           edit
         </button>
         {this.inst.map((ins) => {
