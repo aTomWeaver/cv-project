@@ -1,20 +1,35 @@
 import { Component } from "react";
+import "../styles/ExperienceField.css";
 
 class Experience extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.workplaces = props.workplaces;
+    this.toggleModal = props.toggleModal;
   }
   render() {
     return (
-      <div class="exp-inst">
-        <h3>The Jelly Store</h3>
-        <p>New York City, NY</p>
-        <p>Senior Bongus Manager</p>
-        <p>2015-2019</p>
-        <p>
-          Responsibilities: Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Illo beatae quibusdam doloribus, ea assumenda tempore dolor!
-        </p>
+      <div className="section experience">
+        <button
+          className="edit-btn"
+          onClick={() => {
+            this.toggleModal("exp");
+            document.getElementById("locName").focus();
+          }}
+        >
+          edit
+        </button>
+        {this.workplaces.map((loc) => {
+          return (
+            <div key={loc.id} className="workplace">
+              <h3>{loc.locName}</h3>
+              <p>{loc.position}</p>
+              <p>
+                {loc.expStartYear} - {loc.expEndYear}
+              </p>
+            </div>
+          );
+        })}
       </div>
     );
   }

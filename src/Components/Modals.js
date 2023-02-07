@@ -40,4 +40,44 @@ class EduModal extends React.Component {
   }
 }
 
-export { EduModal };
+class ExpModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = props.toggle;
+    this.handleChange = props.handleChange;
+    this.handleSubmit = props.handleSubmit;
+  }
+
+  render() {
+    return (
+      <form id="exp-add" className="exp-modal" style={{ display: "none" }}>
+        <h3>Add Experience</h3>
+
+        <label htmlFor="locName">Company</label>
+        <input id="locName" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="position">Position</label>
+        <input id="position" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="expStartYear">Start Year</label>
+        <input id="expStartYear" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="expEndYear">End Year</label>
+        <input id="expEndYear" type="text" onChange={this.handleChange} />
+        <div className="btns">
+          <button type="button" onClick={() => {
+            this.handleSubmit();
+            document.getElementById('exp-add').reset()
+            }}>
+            Add Experience
+          </button>
+          <button type="button" onClick={this.toggle}>
+            Close
+          </button>
+        </div>
+      </form>
+    );
+  }
+}
+
+export { EduModal, ExpModal };
