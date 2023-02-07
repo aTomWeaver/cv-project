@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import uniqid from "uniqid";
 import Education from "./Components/EducationField";
-import EduModal from "./Components/Modals";
+import { EduModal } from "./Components/Modals";
 import "./styles/App.css";
 
 class App extends React.Component {
@@ -12,59 +12,63 @@ class App extends React.Component {
       education: {
         cache: {
           instName: "",
-          degree: "testing",
+          degree: "",
           startYear: "",
           endYear: "",
           id: uniqid(),
         },
         institutions: [
           {
-            name: "University of Bongus, Jelly Campus",
+            instName: "University of Bongus, Jelly Campus",
             degree: "B.A. in Wigging",
             startYear: "2011",
             endYear: "2015",
-          },
-          {
-            name: "University of Jelly, Bongus Campus",
-            degree: "B.A. in Wigging",
-            startYear: "2011",
-            endYear: "2015",
+            id: uniqid(),
           },
         ],
       },
     };
   }
 
-  handleChange = (e) => {
-    // there is probably a better way to just change one part of state
-    this.setState(() => {
-      return {
-        education: {
-          cache: {
-            ...this.state.education.cache,
-            [e.target.id]: e.target.value,
-          },
-          institutions: this.state.education.institutions,
-        },
-      };
-    });
+  handleEduChange = (e) => {
+    const stage = this.state;
+    stage.education.cache[e.target.id] = e.target.value;
+    this.setState(stage);
+  };
+
+  handleSubmit = (type) => {
+    const shallowState = this.state;
+    const stage = this.state[type].cache;
+    shallowState[type].institutions.push(stage);
+    shallowState.education.cache = {
+      instName: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      id: uniqid(),
+    }
+    this.setState(shallowState);
+    this.toggleModal("edu");
   };
 
   toggleModal = (type) => {
     let field = document.querySelector(`.${type}-modal`);
-    console.log(field.style.display);
     field.style.display === "none"
-      ? (field.style.display = "block")
-      : (field.style.display = "none")
+      ? (field.style.display = "flex")
+      : (field.style.display = "none");
   };
 
   render() {
     return (
       <div className="resume-ctr">
-        <EduModal toggle={this.toggleModal} handleChange={this.handleChange} />
+        <EduModal
+          toggle={() => this.toggleModal("edu")}
+          handleChange={this.handleEduChange}
+          handleSubmit={() => this.handleSubmit("education")}
+        />
         <Education
           institutions={this.state.education.institutions}
-          display={this.toggleModal}
+          toggleModal={this.toggleModal}
         />
       </div>
     );
