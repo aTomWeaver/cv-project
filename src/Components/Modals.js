@@ -5,7 +5,9 @@ class EduModal extends React.Component {
     super(props);
     this.toggle = props.toggle;
     this.handleChange = props.handleChange;
+    this.handleSubmit = props.handleSubmit;
   }
+
   render() {
     return (
       <form id="edu-add" className="edu-modal" style={{ display: "none" }}>
@@ -23,8 +25,13 @@ class EduModal extends React.Component {
         <label htmlFor="endYear">End Year</label>
         <input id="endYear" type="text" onChange={this.handleChange} />
         <div className="btns">
-          <button type="button">Add Education</button>
-          <button type="button" onClick={() => this.toggle("edu")}>
+          <button type="button" onClick={() => {
+            this.handleSubmit();
+            document.getElementById('edu-add').reset()
+            }}>
+            Add Education
+          </button>
+          <button type="button" onClick={this.toggle}>
             Close
           </button>
         </div>

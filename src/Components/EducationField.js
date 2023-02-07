@@ -19,8 +19,8 @@ class Education extends Component {
         </button>
         {this.inst.map((ins) => {
           return (
-            <div key={ins.name} className="institution">
-              <h3>{ins.name}</h3>
+            <div key={ins.id} className="institution">
+              <h3>{ins.instName}</h3>
               <p>{ins.degree}</p>
               <p>
                 {ins.startYear} - {ins.endYear}
