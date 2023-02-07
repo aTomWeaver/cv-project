@@ -11,7 +11,10 @@ class Education extends Component {
   render() {
     return (
       <div className="section education">
-        <button className="edit-btn" onClick={() => this.toggleModal("edu")}>
+        <button className="edit-btn" onClick={() => {
+          this.toggleModal("edu");
+          document.getElementById('instName').focus();
+          }}>
           edit
         </button>
         {this.inst.map((ins) => {

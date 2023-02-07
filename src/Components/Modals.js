@@ -9,6 +9,8 @@ class EduModal extends React.Component {
   render() {
     return (
       <form id="edu-add" className="edu-modal" style={{ display: "none" }}>
+        <h3>Add Education</h3>
+
         <label htmlFor="instName">School</label>
         <input id="instName" type="text" onChange={this.handleChange} />
 
@@ -20,11 +22,12 @@ class EduModal extends React.Component {
 
         <label htmlFor="endYear">End Year</label>
         <input id="endYear" type="text" onChange={this.handleChange} />
-
-        <button type="button">Add Education</button>
-        <button type="button" onClick={() => this.toggle("edu")}>
-          Close
-        </button>
+        <div className="btns">
+          <button type="button">Add Education</button>
+          <button type="button" onClick={() => this.toggle("edu")}>
+            Close
+          </button>
+        </div>
       </form>
     );
   }
