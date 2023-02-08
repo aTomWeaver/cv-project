@@ -18,15 +18,7 @@ class App extends React.Component {
           endYear: "",
           id: uniqid(),
         },
-        institutions: [
-          {
-            instName: "University of Bongus, Jelly Campus",
-            degree: "B.A. in Wigging",
-            startYear: "2011",
-            endYear: "2015",
-            id: uniqid(),
-          },
-        ],
+        institutions: [],
       },
       experience: {
         cache: {
@@ -36,15 +28,7 @@ class App extends React.Component {
           expEndYear: "",
           id: uniqid(),
         },
-        workplaces: [
-          {
-            locName: "The Jelly Store",
-            position: "Senior Bongus Manager",
-            expStartYear: "2015",
-            expEndYear: "2019",
-            id: uniqid(),
-          },
-        ],
+        workplaces: [],
       },
     };
   }
@@ -53,13 +37,15 @@ class App extends React.Component {
     const stage = this.state;
     stage.education.cache[e.target.id] = e.target.value;
     this.setState(stage);
+    console.log(this.state)
   };
   // these two functions should just be one;
   handleExpChange = (e) => {
     const stage = this.state;
     stage.experience.cache[e.target.id] = e.target.value;
-    this.setState(stage)
-  }
+    this.setState(stage);
+    console.log(this.state.experience)
+  };
 
   handleSubmit = (type) => {
     const shallowState = this.state;
@@ -76,7 +62,7 @@ class App extends React.Component {
       this.toggleModal("edu");
     } else {
       shallowState.experience.workplaces.push(stage);
-      shallowState.education.cache = {
+      shallowState.experience.cache = {
         locName: "",
         position: "",
         expStartYear: "",
@@ -84,6 +70,7 @@ class App extends React.Component {
         id: uniqid(),
       };
       this.toggleModal("exp");
+      console.log(this.state)
     }
 
     this.setState(shallowState);

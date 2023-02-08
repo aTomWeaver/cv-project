@@ -10,6 +10,7 @@ class Experience extends Component {
   render() {
     return (
       <div className="section experience">
+        <h2>Experience</h2>
         <button
           className="edit-btn"
           onClick={() => {

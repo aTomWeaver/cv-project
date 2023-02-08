@@ -11,6 +11,7 @@ class Education extends Component {
   render() {
     return (
       <div className="section education">
+        <h2>Education</h2>
         <button className="edit-btn" onClick={() => {
           this.toggleModal("edu");
           document.getElementById('instName').focus();
