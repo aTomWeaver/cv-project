@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import uniqid from "uniqid";
+import BasicInfo from "./Components/BasicInfo";
 import Education from "./Components/EducationField";
 import Experience from "./Components/ExperienceField";
-import { EduModal, ExpModal } from "./Components/Modals";
+import { BasicInfoModal, EduModal, ExpModal } from "./Components/Modals";
 import "./styles/App.css";
 
 class App extends React.Component {
@@ -10,6 +11,13 @@ class App extends React.Component {
     super();
 
     this.state = {
+      basicInfo: {
+        name: "your name",
+        phone: "(420) 420-6969",
+        email: "jelly@bongus.com",
+        address: "123 Jellybongus Ave, Bongusville 42069",
+        imgUrl: null,
+      },
       education: {
         cache: {
           instName: "",
@@ -18,7 +26,7 @@ class App extends React.Component {
           endYear: "",
           id: uniqid(),
         },
-        institutions: [],
+        list: [],
       },
       experience: {
         cache: {
@@ -28,30 +36,38 @@ class App extends React.Component {
           expEndYear: "",
           id: uniqid(),
         },
-        workplaces: [],
+        list: [],
       },
     };
   }
+
+  deleteItem = (type, item) => {
+    const shallowState = this.state;
+    shallowState[type].places = this.state[type].places.map(
+      (place) => place.id !== item.id
+    );
+    this.setState(shallowState);
+  };
 
   handleEduChange = (e) => {
     const stage = this.state;
     stage.education.cache[e.target.id] = e.target.value;
     this.setState(stage);
-    console.log(this.state)
+    console.log(this.state);
   };
   // these two functions should just be one;
   handleExpChange = (e) => {
     const stage = this.state;
     stage.experience.cache[e.target.id] = e.target.value;
     this.setState(stage);
-    console.log(this.state.experience)
+    console.log(this.state.experience);
   };
 
   handleSubmit = (type) => {
     const shallowState = this.state;
     const stage = this.state[type].cache;
     if (type === "education") {
-      shallowState.education.institutions.push(stage);
+      shallowState.education.list.push(stage);
       shallowState.education.cache = {
         instName: "",
         degree: "",
@@ -61,7 +77,7 @@ class App extends React.Component {
       };
       this.toggleModal("edu");
     } else {
-      shallowState.experience.workplaces.push(stage);
+      shallowState.experience.list.push(stage);
       shallowState.experience.cache = {
         locName: "",
         position: "",
@@ -70,7 +86,7 @@ class App extends React.Component {
         id: uniqid(),
       };
       this.toggleModal("exp");
-      console.log(this.state)
+      console.log(this.state);
     }
 
     this.setState(shallowState);
@@ -86,13 +102,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="resume-ctr">
+        <BasicInfoModal />
+        <BasicInfo info={this.state.basicInfo}/>
         <EduModal
           toggle={() => this.toggleModal("edu")}
           handleChange={this.handleEduChange}
           handleSubmit={() => this.handleSubmit("education")}
         />
         <Education
-          institutions={this.state.education.institutions}
+          institutions={this.state.education.list}
           toggleModal={this.toggleModal}
         />
         <ExpModal
@@ -101,7 +119,7 @@ class App extends React.Component {
           handleSubmit={() => this.handleSubmit("experience")}
         />
         <Experience
-          workplaces={this.state.experience.workplaces}
+          workplaces={this.state.experience.list}
           toggleModal={this.toggleModal}
         />
       </div>

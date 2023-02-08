@@ -1,5 +1,52 @@
 import React from "react";
 
+class BasicInfoModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = props.toggle;
+    this.handleChange = props.handleChange;
+    this.handleSubmit = props.handleSubmit;
+  }
+
+  render() {
+    return (
+      <form id="basic-info-add" className="edu-modal" style={{ display: "none" }}>
+        <h3>Add Basic Info</h3>
+
+        <label htmlFor="name">School</label>
+        <input id="name" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="phone">Phone Number</label>
+        <input id="phone" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="email">Email Address</label>
+        <input id="email" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="address">Address</label>
+        <input id="address" type="text" onChange={this.handleChange} />
+
+        <label htmlFor="img-url">Image URL</label>
+        <input id="img-url" type="text" onChange={this.handleChange} />
+
+        <div className="btns">
+          <button
+            type="button"
+            onClick={() => {
+              this.handleSubmit();
+              document.getElementById("basic-info-add").reset();
+            }}
+          >
+            Add Basic Info
+          </button>
+          <button type="button" onClick={this.toggle}>
+            Close
+          </button>
+        </div>
+      </form>
+    );
+  }
+}
+
 class EduModal extends React.Component {
   constructor(props) {
     super(props);
@@ -25,10 +72,13 @@ class EduModal extends React.Component {
         <label htmlFor="endYear">End Year</label>
         <input id="endYear" type="text" onChange={this.handleChange} />
         <div className="btns">
-          <button type="button" onClick={() => {
-            this.handleSubmit();
-            document.getElementById('edu-add').reset()
-            }}>
+          <button
+            type="button"
+            onClick={() => {
+              this.handleSubmit();
+              document.getElementById("edu-add").reset();
+            }}
+          >
             Add Education
           </button>
           <button type="button" onClick={this.toggle}>
@@ -65,10 +115,13 @@ class ExpModal extends React.Component {
         <label htmlFor="expEndYear">End Year</label>
         <input id="expEndYear" type="text" onChange={this.handleChange} />
         <div className="btns">
-          <button type="button" onClick={() => {
-            this.handleSubmit();
-            document.getElementById('exp-add').reset()
-            }}>
+          <button
+            type="button"
+            onClick={() => {
+              this.handleSubmit();
+              document.getElementById("exp-add").reset();
+            }}
+          >
             Add Experience
           </button>
           <button type="button" onClick={this.toggle}>
@@ -80,4 +133,4 @@ class ExpModal extends React.Component {
   }
 }
 
-export { EduModal, ExpModal };
+export { BasicInfoModal, EduModal, ExpModal };
