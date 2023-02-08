@@ -17,12 +17,6 @@
   margin: 15px 0px 0px 0px;
 }
 
-.edit-btn {
-  display: none;
-  position: absolute;
-  right: 20%;
-}
-
 .resume-ctr .experience:hover .edit-btn {
   display: block;
 }

@@ -1,0 +1,13 @@
+.head {
+  /* flex-direction: column; */
+  min-height: 200px;
+}
+
+.head .edit-btn {
+  position: absolute;
+  top: 70px;
+}
+
+.resume-ctr .head:hover .edit-btn {
+  display: block;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/BasicInfo.css";
 
 class BasicInfo extends React.Component {
   constructor(props) {
@@ -13,6 +14,15 @@ class BasicInfo extends React.Component {
     if (this.props.info.imgUrl) imgUrl = this.props.info.imgUrl;
     return (
       <div className="section head">
+        <button
+          className="edit-btn"
+          onClick={() => {
+            this.toggleModal("basic-info");
+            document.getElementById("name").focus();
+          }}
+        >
+          edit
+        </button>
         <div className="basic-info">
           <h1>{name}</h1>
           <p>{phone}</p>

@@ -29,7 +29,6 @@ ul {
   flex-grow: 1;
   /* background-color: rgb(76, 124, 76); */
   margin: 0px 5px 0px 5px;
-  height: 350px;
 }
 
 #pfp {
@@ -39,7 +38,7 @@ ul {
   width: 200px;
 }
 
-.edu-modal, .exp-modal {
+.edu-modal, .exp-modal, .basic-info-modal {
   background-color: rgb(97, 97, 230);
   position: fixed;
   top: 50%;
@@ -52,7 +51,7 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.edu-modal label, .exp-modal label {
+.edu-modal label, .exp-modal label, .basic-info-modal label {
   margin-top: 10px;
 }
 .btns {
