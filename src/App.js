@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import uniqid from "uniqid";
 import Education from "./Components/EducationField";
-import { EduModal } from "./Components/Modals";
+import Experience from "./Components/ExperienceField";
+import { EduModal, ExpModal } from "./Components/Modals";
 import "./styles/App.css";
 
 class App extends React.Component {
@@ -27,6 +28,24 @@ class App extends React.Component {
           },
         ],
       },
+      experience: {
+        cache: {
+          locName: "",
+          position: "",
+          expStartYear: "",
+          expEndYear: "",
+          id: uniqid(),
+        },
+        workplaces: [
+          {
+            locName: "The Jelly Store",
+            position: "Senior Bongus Manager",
+            expStartYear: "2015",
+            expEndYear: "2019",
+            id: uniqid(),
+          },
+        ],
+      },
     };
   }
 
@@ -35,20 +54,39 @@ class App extends React.Component {
     stage.education.cache[e.target.id] = e.target.value;
     this.setState(stage);
   };
+  // these two functions should just be one;
+  handleExpChange = (e) => {
+    const stage = this.state;
+    stage.experience.cache[e.target.id] = e.target.value;
+    this.setState(stage)
+  }
 
   handleSubmit = (type) => {
     const shallowState = this.state;
     const stage = this.state[type].cache;
-    shallowState[type].institutions.push(stage);
-    shallowState.education.cache = {
-      instName: "",
-      degree: "",
-      startYear: "",
-      endYear: "",
-      id: uniqid(),
+    if (type === "education") {
+      shallowState.education.institutions.push(stage);
+      shallowState.education.cache = {
+        instName: "",
+        degree: "",
+        startYear: "",
+        endYear: "",
+        id: uniqid(),
+      };
+      this.toggleModal("edu");
+    } else {
+      shallowState.experience.workplaces.push(stage);
+      shallowState.education.cache = {
+        locName: "",
+        position: "",
+        expStartYear: "",
+        expEndYear: "",
+        id: uniqid(),
+      };
+      this.toggleModal("exp");
     }
+
     this.setState(shallowState);
-    this.toggleModal("edu");
   };
 
   toggleModal = (type) => {
@@ -68,6 +106,15 @@ class App extends React.Component {
         />
         <Education
           institutions={this.state.education.institutions}
+          toggleModal={this.toggleModal}
+        />
+        <ExpModal
+          toggle={() => this.toggleModal("exp")}
+          handleChange={this.handleExpChange}
+          handleSubmit={() => this.handleSubmit("experience")}
+        />
+        <Experience
+          workplaces={this.state.experience.workplaces}
           toggleModal={this.toggleModal}
         />
       </div>

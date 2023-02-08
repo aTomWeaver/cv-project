@@ -39,7 +39,7 @@ ul {
   width: 200px;
 }
 
-.edu-modal {
+.edu-modal, .exp-modal {
   background-color: rgb(97, 97, 230);
   position: fixed;
   top: 50%;
@@ -52,7 +52,7 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.edu-modal label {
+.edu-modal label, .exp-modal label {
   margin-top: 10px;
 }
 .btns {

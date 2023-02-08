@@ -1,0 +1,28 @@
+.experience {
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.experience > h2 {
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.experience p {
+  margin: 0px;
+  text-align: center;
+}
+.experience h3 {
+  text-align: center;
+  margin: 15px 0px 0px 0px;
+}
+
+.edit-btn {
+  display: none;
+  position: absolute;
+  right: 20%;
+}
+
+.resume-ctr .experience:hover .edit-btn {
+  display: block;
+}
