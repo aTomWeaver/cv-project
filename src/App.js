@@ -102,7 +102,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="resume-ctr">
-        <BasicInfoModal />
+        {/* <BasicInfoModal /> */}
         <BasicInfo info={this.state.basicInfo}/>
         <EduModal
           toggle={() => this.toggleModal("edu")}
