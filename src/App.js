@@ -12,6 +12,13 @@ class App extends React.Component {
 
     this.state = {
       basicInfo: {
+        cache: {
+          name: "",
+          phone: "",
+          email: "",
+          address: "",
+          imgUrl: null,
+        },
         name: "your name",
         phone: "(420) 420-6969",
         email: "jelly@bongus.com",
@@ -49,18 +56,24 @@ class App extends React.Component {
     this.setState(shallowState);
   };
 
+  // these three functions should just be one;
   handleEduChange = (e) => {
     const stage = this.state;
     stage.education.cache[e.target.id] = e.target.value;
     this.setState(stage);
     console.log(this.state);
   };
-  // these two functions should just be one;
   handleExpChange = (e) => {
     const stage = this.state;
     stage.experience.cache[e.target.id] = e.target.value;
     this.setState(stage);
     console.log(this.state.experience);
+  };
+  handleBasicInfoChange = (e) => {
+    const stage = this.state;
+    stage.basicInfo.cache[e.target.id] = e.target.value;
+    this.setState(stage);
+    console.log(this.state.basicInfo);
   };
 
   handleSubmit = (type) => {
@@ -76,7 +89,19 @@ class App extends React.Component {
         id: uniqid(),
       };
       this.toggleModal("edu");
-    } else {
+    } else if (type === "basicInfo") {
+      shallowState.basicInfo = {
+        ...stage,
+        cache: {
+          name: "",
+          phone: "",
+          email: "",
+          address: "",
+          imgUrl: null,
+        },
+      };
+      this.toggleModal("basic-info");
+    } else if (type === "experience") {
       shallowState.experience.list.push(stage);
       shallowState.experience.cache = {
         locName: "",
@@ -102,8 +127,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="resume-ctr">
-        {/* <BasicInfoModal /> */}
-        <BasicInfo info={this.state.basicInfo}/>
+        <BasicInfoModal
+          toggle={() => this.toggleModal("basic-info")}
+          handleChange={this.handleBasicInfoChange}
+          handleSubmit={() => this.handleSubmit("basicInfo")}
+        />
+        <BasicInfo
+          info={this.state.basicInfo}
+          toggle={() => this.toggleModal("basic-info")}
+        />
         <EduModal
           toggle={() => this.toggleModal("edu")}
           handleChange={this.handleEduChange}

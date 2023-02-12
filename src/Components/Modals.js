@@ -10,10 +10,10 @@ class BasicInfoModal extends React.Component {
 
   render() {
     return (
-      <form id="basic-info-add" className="edu-modal" style={{ display: "none" }}>
+      <form id="basic-info-add" className="basic-info-modal" style={{ display: "none" }}>
         <h3>Add Basic Info</h3>
 
-        <label htmlFor="name">School</label>
+        <label htmlFor="name">Name</label>
         <input id="name" type="text" onChange={this.handleChange} />
 
         <label htmlFor="phone">Phone Number</label>
@@ -25,8 +25,8 @@ class BasicInfoModal extends React.Component {
         <label htmlFor="address">Address</label>
         <input id="address" type="text" onChange={this.handleChange} />
 
-        <label htmlFor="img-url">Image URL</label>
-        <input id="img-url" type="text" onChange={this.handleChange} />
+        <label htmlFor="imgUrl">Image URL</label>
+        <input id="imgUrl" type="text" onChange={this.handleChange} />
 
         <div className="btns">
           <button

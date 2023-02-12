@@ -5,7 +5,7 @@ class BasicInfo extends React.Component {
   constructor(props) {
     super(props);
     this.info = props.info;
-    this.toggleModal = props.toggleModal;
+    this.toggleModal = props.toggle;
   }
   render() {
     const { name, phone, email, address } = this.props.info;
